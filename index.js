@@ -48,28 +48,28 @@ app.get('/sendInfo', function(req, res){
 });
 
 app.post('/sendInfo', function(req, res){
+	// unable to test for null conditions since the function did not work
+	var emis = req.body.emis;
+	var centre = req.body.centre_number;
+	var name = req.body.name;
+	var wrote14 = req.body.wrote_14;
+	var passed14 = req.body.passed_14;
+	var wrote15 = req.body.wrote_15;
+	var passed15= req.body.passed_15;
+	var wrote16 = req.body.wrote_16;;
+	var passed16 = req.body.passed_16;
+	var rate14 = 100 * req.body.passed_14 / req.body.wrote_14 ;
+	var rate15 = 100 * req.body.passed_15 / req.body.wrote_15;
+	var rate16 = 100 * req.body.passed_16 / req.body.wrote_16;
 	
-	var emis;
-	var centre;
-	var name;
-	var wrote14;
-	var passed14;
-	var wrote15;
-	var passed15;
-	var wrote16;
-	var passed16;
-	var rate14;
-	var rate15;
-	var rate16;
-	response.send([res]);
-	
-	//var sql = "INSERT INTO matric (emis, centre_number) VALUES (500, 200)"; 
-	 //connection.query(sql, function (err, result) {
+	var sql = "INSERT INTO matric VALUES  ?"; 
+	var values = [emis, centre, name, wrote14, passed14, wrote15, passed15, wrote16, passed16, rate14, rate15,rate16];
+	 connection.query(sql,values, function (err, result) {
 		 
-    //if (err) throw err;
+    if (err) throw err;
     console.log(req);
 	
-  //});
+  });
   var connection = mysql.createConnection({
   host     : 'us-cdbr-iron-east-05.cleardb.net',
   user     : 'bdfb4b0da12a21',
