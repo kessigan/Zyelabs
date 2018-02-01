@@ -1,16 +1,6 @@
 var express = require('express');
-const bodyParser = require('body-parser')
+var bodyParser = require('body-parser')
 var app = express();
-
-app.use(bodyParser.json())
-
-var mysql      = require('mysql');
-var connection = mysql.createConnection({
-  host     : 'us-cdbr-iron-east-05.cleardb.net',
-  user     : 'bdfb4b0da12a21',
-  password : '6dbffacf',
-  database : 'heroku_92916039ae377d2'
-});
 
 app.set('port', (process.env.PORT || 5000));
 
@@ -20,9 +10,23 @@ app.use(express.static(__dirname + '/public'));
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 
-connection.connect();
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+
+var mysql      = require('mysql');
+
+
+
+
+
 
 app.get('/getInfo', function(request, response) {
+var connection = mysql.createConnection({
+  host     : 'us-cdbr-iron-east-05.cleardb.net',
+  user     : 'bdfb4b0da12a21',
+  password : '6dbffacf',
+  database : 'heroku_92916039ae377d2'
+});
   connection.query('SELECT * from matric', function(err, data) {
       if (err) {
         console.log('error: ', err);
@@ -30,6 +34,17 @@ app.get('/getInfo', function(request, response) {
       }
       response.send([data]);
     });
+});
+
+
+
+app.use(bodyParser.json());
+
+app.get('/sendInfo', function(req, res){
+  res.render('form');// if jade
+  // You should use one of line depending on type of frontend you are with
+  res.sendFile(__dirname + '/form.html'); //if html file is root directory
+ res.sendFile("index.html"); //if html file is within public directory
 });
 
 app.post('/sendInfo', function(req, res){
@@ -48,18 +63,28 @@ app.post('/sendInfo', function(req, res){
 	var rate16;
 	response.send([res]);
 	
-	var sql = "INSERT INTO matric (emis, centre_number) VALUES (500, 200)"; 
-	 connection.query(sql, function (err, result) {
+	//var sql = "INSERT INTO matric (emis, centre_number) VALUES (500, 200)"; 
+	 //connection.query(sql, function (err, result) {
 		 
-    if (err) throw err;
-    console.log("1 record inserted");
+    //if (err) throw err;
+    console.log(req);
 	
-  });
+  //});
+  var connection = mysql.createConnection({
+  host     : 'us-cdbr-iron-east-05.cleardb.net',
+  user     : 'bdfb4b0da12a21',
+  password : '6dbffacf',
+  database : 'heroku_92916039ae377d2'
 });
+});
+
+
 
 app.get('/', function(request, response) {
   response.render('pages/index');
 });
+
+
 
 
 
