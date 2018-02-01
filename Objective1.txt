@@ -1,0 +1,23 @@
+1 Important Information
+-Finding the school they are interested in.
+-Viewing current year pass rate
+-Viewing previous years pass rate
+-Viewing overall pass rate
+
+2 Calculations on the data
+-Current data only shows total number of students and how many passed examinations
+-Can add number of students that failed as a user may not want to work it out themselves
+-Can show pass rate per a school per a year
+-Can show aggregated pass rate per a school(all years)
+
+3 Trends
+-Graphing data would allow the pass rate per a year for a school to be shown
+-Multiple schools can not be shown at the same time as there are 6225 schools
+
+4 Data Levels
+-Pass rate per a year for a single school
+-Aggregate pass rate per a year
+-Camparison of school to national avarage
+-Can group schools by pass rate i.e schools with a pass rate between 60 and 70 percent
+
+Should more information relating school to province/suburb be available then the data may be further sorted
