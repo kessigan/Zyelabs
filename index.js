@@ -47,7 +47,7 @@ app.get('/sendInfo', function(req, res){
   res.sendFile(__dirname + '/form.html'); //if html file is root directory
  res.sendFile("index.html"); //if html file is within public directory
 });
-/*
+
 app.post('/sendInfo', function(req, res){
 	// unable to test for null conditions since the function did not work
 	
@@ -80,7 +80,7 @@ app.post('/sendInfo', function(req, res){
   });
 
 });
-*/
+
 
 
 app.get('/', function(request, response) {
