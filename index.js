@@ -1,5 +1,7 @@
 var express = require('express');
 var bodyParser = require('body-parser')
+var mysql      = require('mysql');
+
 var app = express();
 
 app.set('port', (process.env.PORT || 5000));
@@ -13,7 +15,6 @@ app.set('view engine', 'ejs');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-var mysql      = require('mysql');
 
 
 
@@ -46,7 +47,7 @@ app.get('/sendInfo', function(req, res){
   res.sendFile(__dirname + '/form.html'); //if html file is root directory
  res.sendFile("index.html"); //if html file is within public directory
 });
-
+/*
 app.post('/sendInfo', function(req, res){
 	// unable to test for null conditions since the function did not work
 	
@@ -79,14 +80,14 @@ app.post('/sendInfo', function(req, res){
   });
 
 });
-
+*/
 
 
 app.get('/', function(request, response) {
   response.render('pages/home');
 });
-app.get('/home', function(request, response) {
-  response.render('pages/home');
+app.get('/index', function(request, response) {
+  response.render('pages/index');
 });
 
 
