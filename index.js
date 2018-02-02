@@ -22,10 +22,10 @@ var mysql      = require('mysql');
 
 app.get('/getInfo', function(request, response) {
 var connection = mysql.createConnection({
-  host     : 'us-cdbr-iron-east-05.cleardb.net',
-  user     : 'bdfb4b0da12a21',
-  password : '6dbffacf',
-  database : 'heroku_92916039ae377d2'
+  host     : 'sql11.freemysqlhosting.net',
+  user     : 'sql11219062',
+  password : 'jYEteHwenl',
+  database : 'sql11219062'
 });
   connection.query('SELECT * from matric', function(err, data) {
       if (err) {
@@ -49,6 +49,7 @@ app.get('/sendInfo', function(req, res){
 
 app.post('/sendInfo', function(req, res){
 	// unable to test for null conditions since the function did not work
+	
 	var emis = req.body.emis;
 	var centre = req.body.centre_number;
 	var name = req.body.name;
@@ -61,6 +62,12 @@ app.post('/sendInfo', function(req, res){
 	var rate14 = 100 * req.body.passed_14 / req.body.wrote_14 ;
 	var rate15 = 100 * req.body.passed_15 / req.body.wrote_15;
 	var rate16 = 100 * req.body.passed_16 / req.body.wrote_16;
+	var connection = mysql.createConnection({
+  host     : 'sql11.freemysqlhosting.net',
+  user     : 'sql11219062',
+  password : 'jYEteHwenl',
+  database : 'sql11219062'
+});
 	
 	var sql = "INSERT INTO matric VALUES  ?"; 
 	var values = [emis, centre, name, wrote14, passed14, wrote15, passed15, wrote16, passed16, rate14, rate15,rate16];
@@ -70,18 +77,16 @@ app.post('/sendInfo', function(req, res){
     console.log(req);
 	
   });
-  var connection = mysql.createConnection({
-  host     : 'us-cdbr-iron-east-05.cleardb.net',
-  user     : 'bdfb4b0da12a21',
-  password : '6dbffacf',
-  database : 'heroku_92916039ae377d2'
-});
+
 });
 
 
 
 app.get('/', function(request, response) {
   response.render('pages/index');
+});
+app.get('/home', function(request, response) {
+  response.render('pages/home');
 });
 
 
